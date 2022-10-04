@@ -1,3 +1,5 @@
+import { Guess } from "../App";
+
 export const HEXCODE_CHARS: Array<string | number> = [
   0,
   1,
@@ -25,7 +27,7 @@ const randomHexColor = (): string => {
   return str;
 };
 
-export const randomeHexColorArr = (): string[] => {
+export const randomHexColorArr = (): string[] => {
   return [randomHexColor(), randomHexColor(), randomHexColor()];
 };
 
@@ -42,4 +44,19 @@ export const rgbToHex = (rgbString: string) => {
       .toString(16)
       .slice(1)
   );
+};
+
+export const randomNumThree = () => {
+  return Math.floor(Math.random() * 3) + 1;
+};
+
+export const getNewQuestion = (): Guess => {
+  const newChoices: string[] = randomHexColorArr();
+
+  const payload: Guess = {
+    correctAnswer: newChoices[randomNumThree()],
+    choices: newChoices,
+  };
+
+  return payload;
 };
